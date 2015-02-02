@@ -1,0 +1,6 @@
+- name: clone my dot files
+  git: repo=https://github.com/tamouse/my-dot-files.git dest=my-dot-files
+
+- name: run setup script
+  command: bash script/setup.sh creates=../.profile.d chdir=my-dot-files
+  

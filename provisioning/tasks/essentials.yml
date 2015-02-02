@@ -1,0 +1,4 @@
+---
+- name: build-essential
+  sudo: true
+  apt: name=build-essential update_cache=yes

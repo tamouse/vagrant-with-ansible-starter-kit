@@ -1,0 +1,15 @@
+- name: postgres
+  sudo: yes
+  apt: name=postgresql-9.3 update_cache=true
+
+- name: postgres vagrant user
+  remote_user: vagrant
+  sudo: yes
+  sudo_user: postgres
+  script: scripts/create_vagrant_pg_user.sh -s vagrant creates=/var/lib/postgresql/pg_vagrant_user_created
+  
+- name: postgres vagrant default database
+  remote_user: vagrant
+  sudo: yes
+  sudo_user: postgres
+  script: scripts/create_vagrant_pg_db.sh creates=/var/lib/postgresql/pg_vagrant_db_created

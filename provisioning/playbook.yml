@@ -1,0 +1,11 @@
+---
+- hosts: all
+  tasks:
+    - include: tasks/essentials.yml
+    - include: tasks/git.yml
+    - include: tasks/ruby.yml
+    - include: tasks/sqlite3.yml
+    - include: tasks/postgres.yml
+    - include: tasks/emacs24.yml
+    - include: tasks/dot_files.yml
+    - include: tasks/emacs24-starter-kit.yml

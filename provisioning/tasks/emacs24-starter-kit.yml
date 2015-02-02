@@ -1,0 +1,2 @@
+- name: clone my starter kit
+  git: repo=https://github.com/tamouse/emacs24-starter-kit.git dest=.emacs.d

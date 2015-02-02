@@ -1,0 +1,8 @@
+- name: sqlite3
+  sudo: true
+  apt: name=sqlite3 update_cache=yes
+
+- name: libsqlite3-dev
+  sudo: true
+  apt: name=libsqlite3-dev update_cache=yes
+

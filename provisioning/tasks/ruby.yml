@@ -21,3 +21,19 @@
   sudo: true
   copy: src=files/chruby.sh dest=/etc/profile.d/chruby.sh owner=root group=root mode=0644
 
+- name: bundler
+  sudo: true
+  gem: name=bundler executable=/opt/rubies/ruby-2.2.0/bin/gem state=present
+
+- name: rails
+  sudo: true
+  gem: name=rails executable=/opt/rubies/ruby-2.2.0/bin/gem state=present
+
+- name: pry
+  sudo: true
+  gem: name=pry executable=/opt/rubies/ruby-2.2.0/bin/gem state=present
+
+- name: pry-byebug
+  sudo: true
+  gem: name=pry-byebug executable=/opt/rubies/ruby-2.2.0/bin/gem state=present
+  

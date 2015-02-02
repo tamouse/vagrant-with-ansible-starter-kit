@@ -1,15 +1,24 @@
+- name: psycopg2
+  sudo: yes
+  apt: name=python-psycopg2 update_cache=true state=present
+
 - name: postgres
   sudo: yes
-  apt: name=postgresql-9.3 update_cache=true
+  apt: name=postgresql-9.3 update_cache=true state=present
 
 - name: postgres vagrant user
-  remote_user: vagrant
   sudo: yes
   sudo_user: postgres
-  script: scripts/create_vagrant_pg_user.sh -s vagrant creates=/var/lib/postgresql/pg_vagrant_user_created
+  postgresql_user: name=vagrant role_attr_flags=SUPERUSER state=present
   
 - name: postgres vagrant default database
-  remote_user: vagrant
   sudo: yes
   sudo_user: postgres
-  script: scripts/create_vagrant_pg_db.sh creates=/var/lib/postgresql/pg_vagrant_db_created
+  postgresql_db: 
+    name=vagrant
+    encoding="UTF-8"
+    lc_collate="en_US.UTF-8"
+    lc_ctype="en_US.UTF-8"
+    template="template0"
+    owner="vagrant"
+    state=present

@@ -1,0 +1,13 @@
+---
+- name: install nginx
+  sudo: yes
+  apt: name=nginx update_cache=true state=present
+
+- name: install nginx extras
+  sudo: yes
+  apt: name=nginx-extras update_cache=true state=present
+
+- name: install nging documentation
+  sudo: yes
+  apt: name=nginx-doc update_cache=true state=present
+  

@@ -39,7 +39,7 @@ Standard Library package to find a machine name from the `/etc/hosts`
 file. My `hosts` file contains a line like this:
 
 ```
-192.168.35.10	ubu14041.pontiki.dev
+192.168.35.11	ubu14042.pontiki.dev
 ```
 
 The line in the `Vagrantfile` that matches this is:
@@ -84,7 +84,6 @@ includes:
 * ruby 2.2.0 (with ruby-install and chruby)
 * node.js
 * nginx
-
 * My own [emacs24-starter-kit](https://github.com/tamouse/emacs24-starter-kit)
 * My own set of [dot-files](https://github.com/tamouse/my-dot-files)
 

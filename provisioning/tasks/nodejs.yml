@@ -2,13 +2,16 @@
 - name: cloning node.js
   git: repo=https://github.com/joyent/node.git dest=node.js
 
+- name: check out stable
+  command: git checkout v0.10.36 chdir=node.js
+
 - name: configure node.js
-  command: ./configure chdir=node.js
+  command: ./configure chdir=node.js creates=config.mk
 
 - name: make node.js
-  command: make chdir=node.js
+  command: make chdir=node.js creates=node
 
 - name: install node.js
   sudo: true
-  command: make install chdir=node.js
+  command: make install chdir=node.js creates=/usr/local/bin/node
 

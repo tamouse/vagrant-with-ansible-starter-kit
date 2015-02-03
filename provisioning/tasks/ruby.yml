@@ -23,17 +23,17 @@
 
 - name: bundler
   sudo: true
-  gem: name=bundler executable=/opt/rubies/ruby-2.2.0/bin/gem state=present
+  gem: name=bundler executable=/opt/rubies/ruby-2.2.0/bin/gem state=latest
 
 - name: rails
   sudo: true
-  gem: name=rails executable=/opt/rubies/ruby-2.2.0/bin/gem state=present
+  gem: name=rails executable=/opt/rubies/ruby-2.2.0/bin/gem state=latest
 
 - name: pry
   sudo: true
-  gem: name=pry executable=/opt/rubies/ruby-2.2.0/bin/gem state=present
+  gem: name=pry executable=/opt/rubies/ruby-2.2.0/bin/gem state=latest
 
 - name: pry-byebug
   sudo: true
-  gem: name=pry-byebug executable=/opt/rubies/ruby-2.2.0/bin/gem state=present
+  gem: name=pry-byebug executable=/opt/rubies/ruby-2.2.0/bin/gem state=latest
   

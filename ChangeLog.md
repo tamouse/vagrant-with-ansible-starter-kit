@@ -2,6 +2,13 @@
 
 ## Next Release
 
+* Use pre-built node.js binaries.
+
+## v1.1.0
+
+* Using lists, streamline the installation of several items:
+    * apt
+    * rubies
 
 ## v1.0.4
 

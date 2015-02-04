@@ -1,4 +1,21 @@
 ---
-- name: build-essential
+- name: update
+  sudo: yes
+  apt: update_cache=yes
+
+- name: install essential repos
   sudo: true
-  apt: name=build-essential update_cache=yes
+  apt: name={{ item.package }}
+  with_items:
+    - package: build-essential
+    - package: git
+    - package: emacs24
+    - package: nginx
+    - package: nginx-extras
+    - package: nginx-doc
+    - package: python-psycopg2
+    - package: postgresql-9.3
+    - package: libpq-dev
+    - package: sqlite3
+    - package: libsqlite3-dev
+      

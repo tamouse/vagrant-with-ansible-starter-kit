@@ -1,3 +1,0 @@
-- name: git
-  sudo: true
-  apt: name=git

@@ -1,4 +1,5 @@
 ---
+# http://nodejs.org/dist/v0.10.36/node-v0.10.36-linux-x64.tar.gz
 - name: cloning node.js
   git: repo=https://github.com/joyent/node.git dest=node.js
 

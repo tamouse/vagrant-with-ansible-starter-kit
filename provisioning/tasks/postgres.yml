@@ -1,15 +1,4 @@
-- name: psycopg2
-  sudo: yes
-  apt: name=python-psycopg2 update_cache=true state=present
-
-- name: postgres
-  sudo: yes
-  apt: name=postgresql-9.3 update_cache=true state=present
-
-- name: libpq-dev
-  sudo: yes
-  apt: name=libpq-dev update_cache=true state=present
-
+---
 - name: postgres vagrant user
   sudo: yes
   sudo_user: postgres

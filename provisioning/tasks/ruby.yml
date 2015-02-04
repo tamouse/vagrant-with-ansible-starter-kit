@@ -6,10 +6,6 @@
   sudo: true
   command: make install chdir=ruby-install creates=/usr/local/bin/ruby-install
 
-- name: install ruby 2.2.0
-  sudo: true
-  command: /usr/local/bin/ruby-install ruby 2.2.0 creates=/opt/rubies/ruby-2.2.0
-
 - name: clone chruby
   git: repo=https://github.com/postmodern/chruby.git dest=chruby update=yes
 
@@ -21,19 +17,19 @@
   sudo: true
   copy: src=files/chruby.sh dest=/etc/profile.d/chruby.sh owner=root group=root mode=0644
 
-- name: bundler
+- name: install rubies
   sudo: true
-  gem: name=bundler executable=/opt/rubies/ruby-2.2.0/bin/gem state=latest
+  command: /usr/local/bin/ruby-install ruby {{ item.ruby }} creates=/opt/rubies/ruby-{{ item.ruby }}
+  with_items:
+    - ruby: 2.2.0
 
-- name: rails
+- name: install most needed gems
   sudo: true
-  gem: name=rails executable=/opt/rubies/ruby-2.2.0/bin/gem state=latest
+  gem: name={{ item[1] }} executable=/opt/rubies/ruby-{{ item[0] }}/bin/gem state=latest
+  with_nested:
+    - [ '2.2.0' ]
+    - [ 'bundler', 'pry', 'pry-byebug' ]
 
-- name: pry
-  sudo: true
-  gem: name=pry executable=/opt/rubies/ruby-2.2.0/bin/gem state=latest
 
-- name: pry-byebug
-  sudo: true
-  gem: name=pry-byebug executable=/opt/rubies/ruby-2.2.0/bin/gem state=latest
+
   

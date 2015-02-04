@@ -1,4 +1,0 @@
----
-- name: emacs 24
-  sudo: true
-  apt: name=emacs24 update_cache=yes

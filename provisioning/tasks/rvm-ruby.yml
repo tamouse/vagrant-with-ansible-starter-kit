@@ -1,0 +1,7 @@
+---
+- name: acquire mpapis public key
+  shell: /usr/bin/curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+
+- name: install rvm with latest stable ruby and rails
+  shell: /usr/bin/curl -sSL https://get.rvm.io | bash -s stable --ruby=2.2.0 --rails
+  

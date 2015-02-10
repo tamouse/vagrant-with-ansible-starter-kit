@@ -1,0 +1,27 @@
+---
+- name: make source directory
+  sudo: true
+  command: mkdir -p /usr/local/src creates=/usr/local/src
+
+- name: acquire latest emacs24 tarball
+  sudo: true
+  command: /usr/bin/curl -O -sSL http://ftp.gnu.org/gnu/emacs/emacs-24.4.tar.gz chdir=/usr/local/src creates=/usr/local/src/emacs-24.4.tar.gz
+
+- name: unpack emacs24 tarball
+  sudo: true
+  command: tar zxvf emacs-24.4.tar.gz chdir=/usr/local/src creates=/usr/local/src/emacs-24.4
+
+- name: configure emacs24
+  sudo: true
+  command: ./configure --without-x chdir=/usr/local/src/eamcs-24.4
+
+- name: make emacs24
+  sudo: true
+  command: make chdir=/usr/local/src/emacs-24.4
+
+- name: install emacs24
+  sudo: true
+  command: make install chdir=/usr/local/src/emacs-24 creates=/usr/local/bin/emacs
+
+
+  

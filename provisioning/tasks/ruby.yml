@@ -1,21 +1,15 @@
 ---
+- name: create source directory
+  sudo: true
+  shell: mkdir -p /usr/local/src creates=/usr/local/src
+
 - name: clone ruby-install
-  git: repo=https://github.com/postmodern/ruby-install.git dest=ruby-install update=yes
+  sudo: true
+  git: repo=https://github.com/postmodern/ruby-install.git dest=/usr/local/src/ruby-install update=yes
 
 - name: install ruby-install
   sudo: true
-  command: make install chdir=ruby-install creates=/usr/local/bin/ruby-install
-
-- name: clone chruby
-  git: repo=https://github.com/postmodern/chruby.git dest=chruby update=yes
-
-- name: install chruby
-  sudo: true
-  command: make install chdir=chruby creates=/usr/local/share/chruby
-
-- name: install /etc/profile.d/chruby.sh
-  sudo: true
-  copy: src=files/chruby.sh dest=/etc/profile.d/chruby.sh owner=root group=root mode=0644
+  command: make install chdir=/usr/local/src/ruby-install creates=/usr/local/bin/ruby-install
 
 - name: install rubies
   sudo: true
@@ -25,10 +19,22 @@
 
 - name: install most needed gems
   sudo: true
-  gem: name={{ item[1] }} executable=/opt/rubies/ruby-{{ item[0] }}/bin/gem state=latest
+  command: /opt/rubies/ruby-{{ item[0] }}/bin/gem install {{ item[1] }} --no-user-install --no-document
   with_nested:
     - [ '2.2.0' ]
     - [ 'bundler', 'pry', 'pry-byebug' ]
+
+- name: clone chruby
+  sudo: true
+  git: repo=https://github.com/postmodern/chruby.git dest=/usr/local/src/chruby update=yes
+
+- name: install chruby
+  sudo: true
+  command: make install chdir=/usr/local/src/chruby creates=/usr/local/share/chruby
+
+- name: install /etc/profile.d/chruby.sh
+  sudo: true
+  copy: src=files/chruby.sh dest=/etc/profile.d/chruby.sh owner=root group=root mode=0644
 
 
 

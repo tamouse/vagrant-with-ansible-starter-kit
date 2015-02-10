@@ -4,6 +4,5 @@
     - include: tasks/essentials.yml
     - include: tasks/ruby.yml
     - include: tasks/postgres.yml
-    - include: tasks/nodejs.yml
     - include: tasks/dot_files.yml
     - include: tasks/emacs24-starter-kit.yml

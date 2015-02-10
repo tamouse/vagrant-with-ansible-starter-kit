@@ -53,10 +53,34 @@ You should make sure these match your expectations.
 I do it this way instead of using forwarded ports, but of course you
 can do it that way if you want.
 
+#### Provider configuration
+
+I use virtualbox, and have set up the virtual machine "hardware"
+configuration for the VboxManage tool. Current settings include:
+
+* Memory (RAM): 2048M (2G)
+* CPUs (cores): 2
+* VRAM: 12M
+* NAT DNS Host Resolver 1: ON (in order to use the niftiness of Resolv
+  above)
+
+If you're planning on doing some heavy-duty development and you have a
+very capable box, do feel free to bump up the machine resources,
+though you have to be careful if you're running other software or VMs
+on the host.
+
 ### Anisble Tasks
 
 Consider if you want to use my emacs24-starter-kit and my-dot-files or
 create your own.
+
+### Alternative tasks
+
+I've provided a coupld of alternatives for installing things:
+
+* ruby via rvm (`provision/tasks/rvm-ruby.yml`)
+* compile latest emacs24
+* compile latest nodejs
 
 ## Usage
 

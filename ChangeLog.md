@@ -2,7 +2,11 @@
 
 ## Next Release
 
-* Use pre-built node.js binaries.
+## v1.2.0
+
+* Use nvm
+* Update rvm
+* Update script from my-dot-files
 
 ## v1.1.0
 

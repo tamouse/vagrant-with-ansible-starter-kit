@@ -2,7 +2,7 @@
 
 ## Next Release
 
-## v1.2.0
+## v1.3.0
 
 * Use nvm
 * Update rvm

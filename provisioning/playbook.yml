@@ -2,7 +2,8 @@
 - hosts: all
   tasks:
     - include: tasks/essentials.yml
-    - include: tasks/ruby.yml
     - include: tasks/postgres.yml
     - include: tasks/dot_files.yml
     - include: tasks/emacs24-starter-kit.yml
+    - include: tasks/rvm-ruby.yml
+    - include: tasks/nvm-node.yml

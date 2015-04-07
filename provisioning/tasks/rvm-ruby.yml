@@ -2,6 +2,11 @@
 - name: acquire mpapis public key
   shell: /usr/bin/curl -sSL https://rvm.io/mpapis.asc | gpg --import -
 
-- name: install rvm with latest stable ruby and rails
-  shell: /usr/bin/curl -sSL https://get.rvm.io | bash -s stable --ruby=2.2.0 --rails
-  
+- name: install rvm
+  shell: /usr/bin/curl -sSL https://get.rvm.io | bash -s stable
+
+- name: setup .bashrc.d/rvm
+  copy: src=files/rvm.sh dest=.bashrc.d/rvm mode=0755
+
+- name: install ruby 2.2.1
+  shell: /bin/bash -l -c 'rvm install 2.2.1'

@@ -2,5 +2,4 @@
   git: repo=https://github.com/tamouse/my-dot-files.git dest=my-dot-files update=yes
 
 - name: run setup script
-  command: bash script/setup.sh creates=../.profile.d chdir=my-dot-files
-  
+  command: bash setup.sh creates=../.profile.d chdir=my-dot-files

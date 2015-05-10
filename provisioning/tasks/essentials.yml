@@ -1,4 +1,8 @@
 ---
+- name: use our apt sources
+  sudo: yes
+  copy: src=files/apt-sources.list dest=/etc/apt/sources.list mode=0644 backup=yes
+
 - name: update apt sources
   sudo: yes
   apt: update_cache=yes
@@ -8,14 +12,18 @@
   apt: name={{ item.package }}
   with_items:
     - package: build-essential
+    - package: gawk
+    - package: bison
+    - package: autoconf
+    - package: automake
     - package: git
-    - package: emacs24
-    - package: nodejs
+    - package: git-doc
+    - package: git-flow
     - package: nginx
     - package: nginx-extras
     - package: nginx-doc
     - package: python-psycopg2
-    - package: postgresql-9.3
+    - package: postgresql
     - package: postgresql-client
     - package: libpq-dev
     - package: sqlite3
@@ -30,3 +38,5 @@
     - package: libmagickwand-dev
     - package: libmagickcore-dev
     - package: xvfb
+    - package: redis-server
+    - package: redis-tools

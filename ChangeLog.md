@@ -2,6 +2,11 @@
 
 ## Next Release
 
+* Debian 8 "Jessie"
+* Switch to Postgresql-9.4
+* Set default node to iojs
+* Install rails
+
 ## v1.3.0
 
 * Use nvm

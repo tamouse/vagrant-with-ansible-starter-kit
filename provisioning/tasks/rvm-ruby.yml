@@ -10,3 +10,15 @@
 
 - name: install ruby 2.2.1
   shell: /bin/bash -l -c 'rvm install 2.2.1'
+
+- name: gem rc file
+  copy: src=files/gemrc dest=/home/vagrant/.gemrc mode=0644
+
+- name: install @global gems
+  command: rvm @global do gem install {{ item }}
+  with_items:
+    - bundler
+    - pry
+    - pry-byebug
+    - foreman
+    - rails

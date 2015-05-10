@@ -1,5 +1,5 @@
-# vagrant-ubu14.04-emacs24-ruby-2.2.0-development
-Basic vagrant setup for a development box.
+
+Basic vagrant setup for a Rails development box.
 
 ## General
 
@@ -11,44 +11,76 @@ and uses that to create the VM.)
 
 ## Prerequisites
 
-1. Read the Vagrant docs if necessary <http://docs.vagrantup.com>
-1. Install Vagrant and a provider (I use virtualbox).
-2. Read the Ansible docs if you think you want to change the
-   provisioning (add your own favourite packages, configurations, etc.)
-2. Install Ansible.
-3. There are probably others, but I can't be arsed to figure them all
-   out. 
+1. A provider. I use [VirtualBox](https://www.virtualbox.org/)
+2. [Vagrant](http://vagrantup.com)
+3. [Ansible](http://www.ansible.com/home)
+
+Ansible itself does not support Windows as a control (aka host)
+machine and has no plans to. This is a serious limitation for many
+people, but not one I'm capable of solving at the moment.
 
 ## Installation
 
-Fork the repo on Github. Then clone your fork to where you want to
-work from:
+A couple of options here:
 
-    $ mkdir -p /path/to/boxes
-    $ cd /path/to/boxes
-    $ git clone https://github.com/<your github account name>/vagrant-ubu14.04-emacs24-ruby-2.2.0-development.git dev
-    $ cd dev
+1. Fork your own version of the starter kit (recommended).
+2. Pull down the latest zip file and just use/modify what's there for
+   your local project (recommended after you have a setup of your own
+   you like).
 
-## Configurations
+Really, you should fork your own version of this, and your own
+versions of my-dot-files and my emacs24-starter-kit because you want
+this all to be your own stuff.
+
+## Configurations and Customizations
+
+I've used this starter kit several times, but for every instance where
+I've used it, I've had tweak it.
 
 ### Vagrantfile
 
-The only thing that you should change in the `Vagrantfile` is the
-machine name where it sets the IP address. I'm using the `resolv` Ruby
-Standard Library package to find a machine name from the `/etc/hosts`
-file. My `hosts` file contains a line like this:
+Three ruby constants are set near the top of the `Vagrantfile`:
 
-```
-192.168.35.11	ubu14042.pontiki.dev
-```
+* `BOX_NAME` - the name you'd like to give your vagrant box. This is also used as the hostname.
+* `BOX_IP` - the IP address to use for the box's private network
+* `BOX_URL` - the url of the remote vagrant box to copy in for this installation
 
-The line in the `Vagrantfile` that matches this is:
+By default, these are:
+
+| constant | value |
+|:---------|:------|
+| `BOX_URL` | 'https://github.com/holms/vagrant-jessie-box/releases/download/Jessie-v0.1/Debian-jessie-amd64-netboot.box' |
+| `BOX_NAME` | 'jessie' |
+| `BOX_IP` | '192.168.100.10' |
+|:---------|:------|
+{:.table}
+
+If you set shell environment variables to match these constants, those
+values will override the set values. Be careful about that though
+because if you forget to have them set after you've loaded and
+provisioned the box, things will probably break.
+
+### `/etc/hosts`
+
+The `Vagrantfile` utilizes the ruby `resolv` library to look up the IP
+address for the box via:
 
 ``` ruby
-config.vm.network "private_network", ip: Resolv.getaddress("ubu14042.pontiki.dev")
+  config.vm.network "private_network", ip: (Resolv.getaddress("#{BOX_NAME}.local") rescue BOX_IP)
 ```
-  
-You should make sure these match your expectations.
+
+This looks in the *host* machine's `/etc/hosts` file for an entry that
+matches the value of `BOX_NAME` + `".local"`. In the standard
+configuration shown above, this would work out to `jessie.local`. In
+the `/etc/hosts` file, then, you'd like an entry that maps the IP
+address given in `BOX_IP` to `BOX_NAME.local`:
+
+```
+192.168.100.10	jessie.local
+```
+
+Of course, you need to ensure it's unique. Using the `".local"` TLD
+keeps the resolver from looking out on the Internet for matches.
 
 I do it this way instead of using forwarded ports, but of course you
 can do it that way if you want.
@@ -111,8 +143,12 @@ includes:
 * My own [emacs24-starter-kit](https://github.com/tamouse/emacs24-starter-kit)
 * My own set of [dot-files](https://github.com/tamouse/my-dot-files)
 
+And a bunch of other stuff.
+
 You will probably want to use a different set of emacs starter configs
-and dot files, which you can fork from mine or build your own.
+and dot files, which you can fork from mine or build your own. The
+emacs24 stuff is all in one task file, so you can easily omit that
+from the playbook if you don't want emacs at all.
 
 ## Ansible
 
@@ -124,7 +160,7 @@ without rebuilding the world each time.
 ## Contributing
 
 If you have questions, comments, suggestions, issues, please use the
-[Issues](https://github.com/tamouse/vagrant-ubu14.04-emacs24-ruby-2.2.0-development/issues)
+[Issues](https://github.com/tamouse/vagrant-with-ansible-starter-kit/issues)
 section of the repo on Github.
 
 Also, the standard open source cha-cha-cha:

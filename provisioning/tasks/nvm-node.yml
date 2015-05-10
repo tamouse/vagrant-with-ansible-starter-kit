@@ -11,8 +11,11 @@
 - name: install .bashrc.d/nvm startup script
   copy: src=files/nvm.sh dest=.bashrc.d/nvm mode=0755
 
-- name: install node 1.10
-  command: /bin/bash -l -c "nvm install 0.10"
-
 - name: install iojs
   command: /bin/bash -l -c "nvm install iojs"
+
+- name: use iojs
+  command: /bin/bash -l -c 'nvm use iojs'
+
+- name: default to iojs
+  command: /bin/bash -l -c 'nvm alias default iojs'

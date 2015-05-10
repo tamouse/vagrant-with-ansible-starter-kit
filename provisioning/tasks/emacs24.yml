@@ -1,2 +1,6 @@
+- name: install emacs24
+  sudo: yes
+  apt: name=emacs24
+
 - name: clone my starter kit
   git: repo=https://github.com/tamouse/emacs24-starter-kit.git dest=.emacs.d update=yes

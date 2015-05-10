@@ -52,8 +52,6 @@ By default, these are:
 | `BOX_URL` | 'https://github.com/holms/vagrant-jessie-box/releases/download/Jessie-v0.1/Debian-jessie-amd64-netboot.box' |
 | `BOX_NAME` | 'jessie' |
 | `BOX_IP` | '192.168.100.10' |
-|:---------|:------|
-{:.table}
 
 If you set shell environment variables to match these constants, those
 values will override the set values. Be careful about that though
